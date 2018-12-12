@@ -184,4 +184,31 @@ public class ScreenID extends Screen {
     public void displayCancelingTransaction(){
         displayMessageLine("Canceling Transaction...");
     }
+    
+    @Override
+    public void displayTopUpMenu(){
+        displayMessageLine("Topup Menu");
+    }
+    
+    @Override
+    public void displayOVO(){
+        displayMessageLine("- 1 OVO");
+    }
+    
+    @Override
+    public void displayBack(){
+        displayMessageLine("- 0 Back");
+    }
+    
+    @Override
+    public void displayInput(){
+        displayMessage("Input : ");
+    }
+    
+    @Override
+    public void displayAmountTopUp(){
+        displayMessage("\nPlease enter a amount TopUp in " + 
+         "Dollars (or 0 to cancel): ");
+    }
+ 
 } 

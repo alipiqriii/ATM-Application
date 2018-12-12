@@ -57,10 +57,10 @@ public class TopUp extends Transaction {
        int chooseDestination;
        BankDatabase atmBankDatabase = super.getBankDatabase();
        Screen screen = getScreen();
-       screen.displayMessageLine("Topup Menu");
-       screen.displayMessageLine("- 1 OVO");
-       screen.displayMessageLine("- 0 Back");
-       screen.displayMessage("Input : ");
+       screen.displayTopUpMenu();
+       screen.displayOVO();
+       screen.displayBack();
+       screen.displayInput();
        chooseDestination = keypad.getInput();
        switch(chooseDestination){
            case 1 :
