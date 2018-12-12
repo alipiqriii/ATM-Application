@@ -43,11 +43,11 @@ public class TopUp extends Transaction {
              if(amount <= currentAccount.getAvailableBalance()){
                  currentAccount.credit(amount);
                  destinationAccount.addAmount(amount);
-                 screen.displayMessageLine("TopUp Successfull...");
+                 screen.displayTopUpSuccess();
              }
-             else screen.displayMessageLine("Balance is Insfulence");
+             else screen.displayBalanceisInsfluence();
          }
-         else screen.displayMessageLine("Canceling Transaction...");
+         else screen.displayCancelingTransaction();
        }
    } 
    

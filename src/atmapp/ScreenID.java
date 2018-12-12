@@ -169,6 +169,19 @@ public class ScreenID extends Screen {
     public String getID() {
         return this.ID;
     }
+    
+    @Override
+    public void displayTopUpSuccess(){
+       displayMessageLine("TopUp Successfull...");
+   }
    
-   
+    @Override
+    public void displayBalanceisInsfluence(){
+        displayMessageLine("Balance is Insfulence");
+    }
+    
+    @Override
+    public void displayCancelingTransaction(){
+        displayMessageLine("Canceling Transaction...");
+    }
 } 

@@ -1,3 +1,4 @@
+
 package atmapp;
 import java.util.*;
 public abstract class Screen {
@@ -43,7 +44,11 @@ public abstract class Screen {
    public abstract void displayMenuPayment();
    public abstract void displayMenuInternetCable();
    public abstract void displayPaymentSuccess(String Payment);
-   
+   public abstract void displayTopUpSuccess();
+   public abstract void displayBalanceisInsfluence();
+   public abstract void displayCancelingTransaction();
+     
+    
    public abstract String getID();
    
 } 
