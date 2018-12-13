@@ -37,22 +37,17 @@ public class Listrik extends Transaction {
                 if(amount <= availableBalance){
                     atmBankDatabase.getAccount(super.getAccountNumber()).
                             credit(amount);
-                    screen.displayMessageLine("\nPembayaran selesai.");
-                    screen.displayMessageLine("Tagihan listrik Anda sebesar: "
-                    + amount);
+                    screen.displayPaymentSuccess("Top UP PLN");
+                    screen.displayPLNBill(amount);
                 }
                 else {
-                    screen.displayMessageLine("Saldo Anda tidak cukup "
-                        + "untuk melakukan penarikan");
-                    screen.displayMessage("Saldo : ");
+                    screen.displayNotEnoughBalance();
                     screen.displayDollarAmount(availableBalance);
-                    screen.displayMessageLine("");
-                    screen.displayMessage("Jumlah tagihan listrik : ");
-                    screen.displayDollarAmount(amount);
+                    screen.displayPLNBill(amount);
                 }
        }
        else {
-           screen.displayMessageLine("Membatalkan transaksi...");
+           screen.displayCancelingTransaction();
        }
    } 
 
@@ -69,8 +64,7 @@ public class Listrik extends Transaction {
       // loop while no valid choice has been made
       while (userChoice == 0) {
          // display the withdrawal menu
-         screen.displayMessageLine("\n=== Pembayaran Listrik ===");
-         screen.displayMessage("Masukan Nomor PLN : ");
+         screen.displayListrik();
 
          int input = keypad.getInput(); // get user input through keypad
 
@@ -100,8 +94,7 @@ public class Listrik extends Transaction {
                userChoice = amounts[input - CANCELED]; // save user's choice
                break;
             default: // the user did not enter a value from 1-6
-               screen.displayMessageLine(
-                  "\nNomor PLN yang dimasukan salah. Silahkan coba lagi.");
+               screen.displayInputError();
          } 
       } 
 

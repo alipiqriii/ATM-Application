@@ -212,4 +212,27 @@ public class ScreenEN extends Screen {
          "Dollars (or 0 to cancel): ");
     }
     
+    @Override
+    public void displayListrik(){
+        displayMessage("\n=== Top Up PLN ===");
+        displayMessage("\nInput PLN number : ");
+    }
+    
+    @Override
+    public void displayInputError(){
+        displayMessage("\nWrong PLN number. Please try again.\n");
+    }
+    
+    @Override
+    public void displayNotEnoughBalance(){
+        displayMessageLine("Your balance is not enough "
+        + "to make the payment.");
+        displayMessage("Balance : ");
+    }
+    
+    @Override
+    public void displayPLNBill(int amount){
+        displayMessageLine("");
+        displayMessage("The amount of the bill : " + amount);
+    }
 }

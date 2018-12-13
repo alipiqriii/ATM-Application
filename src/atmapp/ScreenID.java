@@ -210,5 +210,28 @@ public class ScreenID extends Screen {
         displayMessage("\nPlease enter a amount TopUp in " + 
          "Dollars (or 0 to cancel): ");
     }
- 
+    
+    @Override
+    public void displayListrik(){
+        displayMessage("\n=== Pembayaran PLN ===");
+        displayMessage("\nMasuka Nomor PLN : ");
+    }
+    
+    @Override
+    public void displayInputError(){
+        displayMessage("\nNomor PLN yang dimasukan salah. Silahkan coba lagi.\n");
+    }
+    
+    @Override
+    public void displayNotEnoughBalance(){
+        displayMessageLine("Saldo Anda tidak cukup "
+        + "untuk melakukan penarikan");
+        displayMessage("Saldo : ");
+    }
+    
+    @Override
+    public void displayPLNBill(int amount){
+        displayMessageLine("");
+        displayMessage("Jumlah tagihan listrik : " + amount);
+    }
 } 
