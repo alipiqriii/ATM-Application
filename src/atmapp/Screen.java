@@ -48,10 +48,8 @@ public abstract class Screen {
    public abstract void displayBalanceisInsfluence();
    public abstract void displayCancelingTransaction();
    public abstract void displayTopUpMenu();
-   public abstract void displayOVO();
-   public abstract void displayBack();
-   public abstract void displayInput();
    public abstract void displayAmountTopUp();
+   public abstract void displayOVOMenu();
     
    public abstract String getID();
    

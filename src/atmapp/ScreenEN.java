@@ -190,22 +190,26 @@ public class ScreenEN extends Screen {
     @Override
     public void displayTopUpMenu(){
         displayMessageLine("Topup Menu");
-    }
-    
-    @Override
-    public void displayOVO(){
         displayMessageLine("- 1 OVO");
-    }
-    
-    @Override
-    public void displayBack(){
         displayMessageLine("- 0 Back");
+        displayMessage("Input menu: ");
     }
     
-    @Override
-    public void displayInput(){
-        displayMessage("Input : ");
+   @Override
+    public void displayOVOMenu(){
+        displayMessageLine("\nTopUp Menu:");
+        displayMessageLine("1 - $20");
+        displayMessageLine("2 - $40");
+        displayMessageLine("3 - $60");
+        displayMessageLine("4 - $100");
+        displayMessageLine("5 - $200");
+        displayMessageLine("6 - Cancel transaction");
+        displayMessage("\nChoose a TopUp amount: ");
+
+         
     }
+    
+    
     
     @Override
     public void displayAmountTopUp(){
