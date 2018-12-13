@@ -74,8 +74,7 @@ public class TopUp extends Transaction {
       Screen screen = getScreen(); // get screen reference
       
       // display the prompt
-      screen.displayMessage("\nPlease enter a amount TopUp in " + 
-         "Dollars (or 0 to cancel): ");
+      screen.displayAmountTopUp();
       int input = keypad.getInput(); // receive input of deposit amount
       
       if (input == CANCELED) {

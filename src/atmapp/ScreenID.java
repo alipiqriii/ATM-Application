@@ -172,7 +172,7 @@ public class ScreenID extends Screen {
     
     @Override
     public void displayTopUpSuccess(){
-       displayMessageLine("TopUp Successfull...");
+       displayMessageLine("TopUp Berhasil...");
    }
    
     @Override
@@ -197,18 +197,18 @@ public class ScreenID extends Screen {
     
     @Override
     public void displayBack(){
-        displayMessageLine("- 0 Back");
+        displayMessageLine("- 0 Kembali");
     }
     
     @Override
     public void displayInput(){
-        displayMessage("Input : ");
+        displayMessage("Masukkan Nomor Telepon : ");
     }
     
     @Override
     public void displayAmountTopUp(){
-        displayMessage("\nPlease enter a amount TopUp in " + 
-         "Dollars (or 0 to cancel): ");
+        displayMessage("\nSilahkan masukkan jumlah TopUp  " + 
+         "Dollar (atau 0 untuk Membatalkan): ");
     }
  
 } 
