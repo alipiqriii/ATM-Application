@@ -213,6 +213,7 @@ public class ScreenID extends Screen {
     }
     
     @Override
+
     public void displayPaymentTokopedia(){
         displayMessageLine ("==== Pembayaran Tokopedia ====");
         displayMessage ("Input Kode Order : ");
@@ -223,4 +224,28 @@ public class ScreenID extends Screen {
         displayMessageLine ("Pembayaran Tokopediamu Berhasil");
     }
  
+
+    public void displayListrik(){
+        displayMessage("\n=== Pembayaran PLN ===");
+        displayMessage("\nMasuka Nomor PLN : ");
+    }
+    
+    @Override
+    public void displayInputError(){
+        displayMessage("\nNomor PLN yang dimasukan salah. Silahkan coba lagi.\n");
+    }
+    
+    @Override
+    public void displayNotEnoughBalance(){
+        displayMessageLine("Saldo Anda tidak cukup "
+        + "untuk melakukan penarikan");
+        displayMessage("Saldo : ");
+    }
+    
+    @Override
+    public void displayPLNBill(int amount){
+        displayMessageLine("");
+        displayMessage("Jumlah tagihan listrik : " + amount);
+    }
+
 } 

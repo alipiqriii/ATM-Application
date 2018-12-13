@@ -215,6 +215,7 @@ public class ScreenEN extends Screen {
     }
     
     @Override
+
     public void displayPaymentTokopedia(){
         displayMessageLine ("==== Payment Tokopedia ====");
         displayMessage ("Input Order Code : ");
@@ -225,4 +226,28 @@ public class ScreenEN extends Screen {
         displayMessageLine ("Your Payment Tokopedia Has Success");
     }
     
+
+    public void displayListrik(){
+        displayMessage("\n=== Top Up PLN ===");
+        displayMessage("\nInput PLN number : ");
+    }
+    
+    @Override
+    public void displayInputError(){
+        displayMessage("\nWrong PLN number. Please try again.\n");
+    }
+    
+    @Override
+    public void displayNotEnoughBalance(){
+        displayMessageLine("Your balance is not enough "
+        + "to make the payment.");
+        displayMessage("Balance : ");
+    }
+    
+    @Override
+    public void displayPLNBill(int amount){
+        displayMessageLine("");
+        displayMessage("The amount of the bill : " + amount);
+    }
+
 }
