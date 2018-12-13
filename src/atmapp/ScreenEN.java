@@ -219,7 +219,47 @@ public class ScreenEN extends Screen {
     }
     
     @Override
-
+    public void displayinfo(){
+            displayMessage("Please add 0159 befofe your phone number");
+    }
+    
+    @Override
+    public void displayInputNumber(){
+        displayMessage("\nPlease enter destination account number : ");
+    }
+    
+    @Override 
+    public void displayTransfer(){
+        displayMessage("\nPlease enter a transfer amount in " + "CENTS : ");
+    }
+    
+    @Override 
+    public void displaySaldo(){
+        displayMessageLine("It's not enough balance");
+    }
+    
+    @Override 
+    public void displayInformation(){
+        displayMessage("Please add 0159 in your account number.");
+    }
+    
+    @Override
+    public void displayQuetion(){ 
+        displayMessage("\nAre you sure for this transaction (1 to yes or 0 to cancel) : ");
+    }
+    
+    @Override
+    public void displayTryAgain(){ 
+        displayMessageLine("\nInvalid selection. Try again.");
+    }
+        
+    @Override 
+    public void displayInvalid(){
+        displayMessageLine("Invalid phone number destination.");
+    }
+    
+    
+    @Override
     public void displayPaymentTokopedia(){
         displayMessageLine ("==== Payment Tokopedia ====");
         displayMessage ("Input Order Code : ");
@@ -253,5 +293,6 @@ public class ScreenEN extends Screen {
         displayMessageLine("");
         displayMessage("The amount of the bill : " + amount);
     }
+    
 
 }

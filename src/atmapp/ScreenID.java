@@ -178,7 +178,7 @@ public class ScreenID extends Screen {
    
     @Override
     public void displayBalanceisInsfluence(){
-        displayMessageLine("Balance is Insfulence");
+        displayMessageLine("Saldo anda tidak mencukupi");
     }
     
     @Override
@@ -212,6 +212,47 @@ public class ScreenID extends Screen {
     public void displayAmountTopUp(){
         displayMessage("\nSilahkan masukkan jumlah TopUp  " + 
          "Dollar (atau 0 untuk Membatalkan): ");
+    }
+    
+    @Override
+    public void displayinfo(){
+            displayMessage("silahkan masukan 0159 sebelum memasukan nomor telepon anda");
+    }
+    
+    @Override
+    public void displayInputNumber(){
+        displayMessage("\nSilahkan masukkan nomor tujuan anda : ");
+    }
+    
+    @Override 
+    public void displayTransfer(){
+        displayMessage("\nSilahkan masukkan jumlah " + "CENTS : ");
+    }
+    
+    
+    @Override 
+    public void displaySaldo(){
+        displayMessageLine("Saldo Tidak mencukupi");
+    }
+    
+    @Override 
+    public void displayInvalid(){
+        displayMessageLine("Nomor telepon tujuan salah");
+    }
+    
+    @Override 
+    public void displayInformation(){
+        displayMessage("masukkan 0159 sebelum nomor telepon");
+    }
+    
+    @Override
+    public void displayQuetion(){ 
+        displayMessage("\nApakah yakin dengan transaksi ini  (1 Ya or 0 Batalakan) : ");
+    }
+    
+    @Override
+    public void displayTryAgain(){ 
+        displayMessageLine("\nPemilihan tidak valid, Coba Lagi.");
     }
     
     @Override

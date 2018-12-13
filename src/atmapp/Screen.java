@@ -50,6 +50,7 @@ public abstract class Screen {
    public abstract void displayTopUpMenu();
    public abstract void displayAmountTopUp();
    public abstract void displayOVOMenu();
+   public abstract void displayinfo();
    public abstract void displayPaymentTokopedia();
    public abstract void displaySucccessPaymentTokopedia();
    public abstract void displayListrik();
