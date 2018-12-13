@@ -145,6 +145,7 @@ public class ScreenID extends Screen {
         displayMessageLine("5 - TopUp");
         displayMessageLine("6 - UKT");
         displayMessageLine("7 - PLN");
+        displayMessageLine("8 - Tokopedia");
         displayMessageLine("0 - Kembali");
         displayMessage("\nInput: ");
    }
@@ -212,5 +213,41 @@ public class ScreenID extends Screen {
         displayMessage("\nSilahkan masukkan jumlah TopUp  " + 
          "Dollar (atau 0 untuk Membatalkan): ");
     }
+    
+    @Override
+
+    public void displayPaymentTokopedia(){
+        displayMessageLine ("==== Pembayaran Tokopedia ====");
+        displayMessage ("Input Kode Order : ");
+    }
+    
+     @Override
+    public void displaySucccessPaymentTokopedia(){
+        displayMessageLine ("Pembayaran Tokopediamu Berhasil");
+    }
  
+
+    public void displayListrik(){
+        displayMessage("\n=== Pembayaran PLN ===");
+        displayMessage("\nMasuka Nomor PLN : ");
+    }
+    
+    @Override
+    public void displayInputError(){
+        displayMessage("\nNomor PLN yang dimasukan salah. Silahkan coba lagi.\n");
+    }
+    
+    @Override
+    public void displayNotEnoughBalance(){
+        displayMessageLine("Saldo Anda tidak cukup "
+        + "untuk melakukan penarikan");
+        displayMessage("Saldo : ");
+    }
+    
+    @Override
+    public void displayPLNBill(int amount){
+        displayMessageLine("");
+        displayMessage("Jumlah tagihan listrik : " + amount);
+    }
+
 } 
