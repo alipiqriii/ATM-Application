@@ -4,10 +4,11 @@ public class BankDatabase {
    private Account[] accounts; // array of Accounts
    
    public BankDatabase() {
-      accounts = new Account[3]; // just 2 accounts for testing
+      accounts = new Account[4]; // just 2 accounts for testing
       accounts[0] = new Account(12345, 54321, 1000.0, 1200.0);
       accounts[1] = new Account(87654, 45678, 200.0, 200.0);
       accounts[2] = new Account(11000, 11001, 0, 0); // OVO Rekening
+      accounts[3] = new Account(5678, 8765, 0, 0); // Tokopedia
    }
    
    public Account getAccount(int accountNumber) {
@@ -50,4 +51,5 @@ public class BankDatabase {
    public void debit(int userAccountNumber, double amount) {
       getAccount(userAccountNumber).debit(amount);
    } 
+   
 } 

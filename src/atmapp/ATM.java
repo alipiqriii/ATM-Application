@@ -9,6 +9,8 @@ public class ATM {
    private CashDispenser cashDispenser; // ATM's cash dispenser
    private DepositSlot depositSlot;
    private BankDatabase bankDatabase; // account information database
+   private TokopediaDatabase tokopediaDatabase; //tokopedia database
+   
 
    // constants corresponding to main menu options
    private static final int BALANCE_INQUIRY = 1;
@@ -25,6 +27,8 @@ public class ATM {
    private static final int TOPUP = 5;
    private static final int UKT = 6;
    private static final int LISTRIK = 7;
+   private static final int TOKOPEDIA = 8;
+   
    
    private static final int EXIT = 0;
    
@@ -38,6 +42,7 @@ public class ATM {
       cashDispenser = new CashDispenser(); // create cash dispenser
       bankDatabase = new BankDatabase(); // create acct info database
       depositSlot = new DepositSlot();
+      tokopediaDatabase = new TokopediaDatabase();
    }
    
    public void setScreen(Screen newScreen){
@@ -211,7 +216,9 @@ public class ATM {
          case PAYMENT+LISTRIK:
              temp = new Listrik(currentAccountNumber, screen, bankDatabase, keypad);
              break;
-          
+         case PAYMENT+TOKOPEDIA: 
+             temp = new PaymentTokopedia (currentAccountNumber, screen, bankDatabase, keypad,tokopediaDatabase);
+             break;
       }
 
       return temp;

@@ -145,6 +145,7 @@ public class ScreenID extends Screen {
         displayMessageLine("5 - TopUp");
         displayMessageLine("6 - UKT");
         displayMessageLine("7 - PLN");
+        displayMessageLine("8 - Tokopedia");
         displayMessageLine("0 - Kembali");
         displayMessage("\nInput: ");
    }
@@ -209,6 +210,17 @@ public class ScreenID extends Screen {
     public void displayAmountTopUp(){
         displayMessage("\nSilahkan masukkan jumlah TopUp  " + 
          "Dollar (atau 0 untuk Membatalkan): ");
+    }
+    
+    @Override
+    public void displayPaymentTokopedia(){
+        displayMessageLine ("==== Pembayaran Tokopedia ====");
+        displayMessage ("Input Kode Order : ");
+    }
+    
+     @Override
+    public void displaySucccessPaymentTokopedia(){
+        displayMessageLine ("Pembayaran Tokopediamu Berhasil");
     }
  
 } 

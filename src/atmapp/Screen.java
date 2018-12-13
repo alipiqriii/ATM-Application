@@ -52,6 +52,8 @@ public abstract class Screen {
    public abstract void displayBack();
    public abstract void displayInput();
    public abstract void displayAmountTopUp();
+   public abstract void displayPaymentTokopedia();
+   public abstract void displaySucccessPaymentTokopedia();
     
    public abstract String getID();
    

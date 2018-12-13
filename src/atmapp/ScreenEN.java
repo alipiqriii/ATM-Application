@@ -159,6 +159,7 @@ public class ScreenEN extends Screen {
         displayMessageLine("5 - TopUp");
         displayMessageLine("6 - UKT");
         displayMessageLine("7 - PLN");
+        displayMessageLine("8 - Tokopedia");
         displayMessageLine("0 - Back");
         displayMessage("\nInput: ");
    }
@@ -211,6 +212,17 @@ public class ScreenEN extends Screen {
     public void displayAmountTopUp(){
         displayMessage("\nPlease enter a amount TopUp in " + 
          "Dollars (or 0 to cancel): ");
+    }
+    
+    @Override
+    public void displayPaymentTokopedia(){
+        displayMessageLine ("==== Payment Tokopedia ====");
+        displayMessage ("Input Order Code : ");
+    }
+    
+    @Override
+    public void displaySucccessPaymentTokopedia(){
+        displayMessageLine ("Your Payment Tokopedia Has Success");
     }
     
 }
