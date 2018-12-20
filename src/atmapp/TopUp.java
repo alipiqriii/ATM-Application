@@ -77,8 +77,8 @@ public class TopUp extends Transaction {
            case 1 :
 //               return atmBankDatabase.getAccount(11000);
                 displayOVOMenu(); break;
-//           case 0 :
-//               screen.displayMenu();break;
+           case 0 :
+                break;
                
        }
        if (input == CANCELED) {
@@ -109,12 +109,12 @@ public class TopUp extends Transaction {
         
         Screen screen = super.getScreen();
         
-        screen.displayMessage("Please add 0159 befofe your phone number");
-        screen.displayMessage("\nPlease enter destination account number : ");
+        screen.displayinfo();
+        screen.displayInputNumber();
         String destinationPhoneNumber = keypad.getInputString();
             
         if(destinationPhoneNumber.startsWith("0159")) {
-                screen.displayMessage("\nPlease enter a transfer amount in " + "CENTS : ");
+                screen.displayTransfer();
                 amount = keypad.getInput();
                 amount = amount / 100;
           
@@ -122,18 +122,18 @@ public class TopUp extends Transaction {
                     if(super.getBankDatabase().getAvailableBalance(super.getAccountNumber()) > amount) {
                         valid = true;
                     }else{
-                        screen.displayMessageLine("It's not enough balance");
+                        screen.displaySaldo();
                         //continue;
                     }
                 }else{
-                    screen.displayMessageLine("Invalid phone number destination.");
+                    screen.displayInvalid();
                     //continue;
                 }
             }else {
-                screen.displayMessage("Please add 0159 in your account number.");
+                screen.displayInformation();
                 //continue;
             }
-        screen.displayMessage("\nAre you sure for this transaction (1 to yes or 0 to cancel) : ");
+        screen.displayQuetion();
         input = keypad.getInput();
         
         if (valid && input == CANCELED) {
@@ -155,11 +155,11 @@ public class TopUp extends Transaction {
       // array of amounts to correspond to menu numbers
       int[] amounts = {0, 20, 40, 60, 100, 200};
       promptForDetail();
-      screen.displayOVOMenu();
+      //screen.displayOVOMenu();
       // loop while no valid choice has been made
       while (userChoice == 0) {
          // display the withdrawal menu
-//         screen.displayOVOMenu();
+        screen.displayOVOMenu();
          input = keypad.getInput(); // get user input through keypad
          
          // determine how to proceed based on the input value

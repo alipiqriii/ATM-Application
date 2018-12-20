@@ -57,6 +57,15 @@ public abstract class Screen {
    public abstract void displayInputError();
    public abstract void displayNotEnoughBalance();
    public abstract void displayPLNBill(int amount);
+   public abstract void displayInputNumber();
+   public abstract void displayTransfer();
+   public abstract void displaySaldo();
+   public abstract void displayInformation();
+   public abstract void displayQuetion();
+   public abstract void displayTryAgain();
+   public abstract void displayInvalid();
+   
+   
     
    public abstract String getID();
    
