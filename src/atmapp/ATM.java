@@ -82,11 +82,10 @@ public class ATM {
       if (userAuthenticated) {
          currentAccountNumber = accountNumber; // save user's account #
       } 
-      else {
-         if(bankDatabase.getAccount(accountNumber).getStatusBlock())
+      else if(bankDatabase.getAccount(accountNumber)!=null && bankDatabase.getAccount(accountNumber).getStatusBlock()) {
              screen.displayMessageLine("Account Has Been Blocked\n");
-         else screen.displayInvalidAccountPIN();
       } 
+      else screen.displayInvalidAccountPIN();
    } 
 
    // display the main menu and perform transactions
