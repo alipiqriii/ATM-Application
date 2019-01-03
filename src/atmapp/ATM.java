@@ -7,7 +7,7 @@ public class ATM {
    private Screen screen; // ATM's screen
    private Keypad keypad; // ATM's keypad
    private CashDispenser cashDispenser; // ATM's cash dispenser
-   private DepositSlot depositSlot;
+   private DepositSlot depositSlot; // ATM's deposit slot
    private BankDatabase bankDatabase; // account information database
    private TokopediaDatabase tokopediaDatabase; //tokopedia database
    
@@ -41,12 +41,12 @@ public class ATM {
       keypad = newKeypad; // create keypad 
       cashDispenser = new CashDispenser(); // create cash dispenser
       bankDatabase = new BankDatabase(); // create acct info database
-      depositSlot = new DepositSlot();
-      tokopediaDatabase = new TokopediaDatabase();
+      depositSlot = new DepositSlot(); // create deposit slot
+      tokopediaDatabase = new TokopediaDatabase(); //create database for Tokopedia
    }
    
    public void setScreen(Screen newScreen){
-       this.screen = newScreen;
+       this.screen = newScreen; // create screen
    }
 
    // start ATM 
