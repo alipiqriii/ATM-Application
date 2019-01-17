@@ -10,7 +10,7 @@ public class Withdrawal extends Transaction {
    private CashDispenser cashDispenser; // reference to cash dispenser
 
    // constant corresponding to menu option to cancel
-   private final static int CANCELED = 7;
+   private final static int CANCELED = -100;
 
    // Withdrawal constructor
    public Withdrawal(int userAccountNumber, Screen atmScreen, 
@@ -43,16 +43,20 @@ public class Withdrawal extends Transaction {
                 availableBalance =
                         atmBankDatabase.getAvailableBalance(
                                 super.getAccountNumber());
-                if(amount <= availableBalance){
+                if(amount <= 0){
+                    screen.displayNegative();
+                    screen.displayCancel();
+                }
+                else if(amount <= availableBalance){
                     if(amount % 20 == 0){
-                        cashDispenser.dispenseCash(amount);
-                        atmBankDatabase.getAccount(super.getAccountNumber()).
-                                credit(amount);
-                        screen.displayTakeCash();
                         Account currentAccount = atmBankDatabase.getAccount(super.getAccountNumber());
+                        cashDispenser.dispenseCash(amount);
                         BankStatement NewBankStatement = 
                                 new BankStatement(currentAccount.getBankStatement().size() + 1,amount,0,currentAccount.getTotalBalance());
-                        currentAccount.addRecordBankStatement(NewBankStatement);
+                        atmBankDatabase.getAccount(super.getAccountNumber()).
+                                credit(amount,NewBankStatement);
+                        screen.displayTakeCash();
+                        
                     }
                     else {
                     screen.displayInvalidWithdrawal();
@@ -119,7 +123,7 @@ public class Withdrawal extends Transaction {
                     userChoice = CANCELED;
                 }
                 break;
-            case CANCELED: // the user chose to cancel
+            case 7: // the user chose to cancel
                userChoice = CANCELED; // save user's choice
                break;
             default: // the user did not enter a value from 1-6

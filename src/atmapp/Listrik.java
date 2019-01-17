@@ -8,7 +8,7 @@ public class Listrik extends Transaction {
    private Keypad keypad; // reference to keypad
 
    // constant corresponding to menu option to cancel
-   private final static int CANCELED = 6;
+   private final static int CANCELED = -100;
 
    // Withdrawal constructor
    public Listrik(int userAccountNumber, Screen atmScreen, 
@@ -29,14 +29,16 @@ public class Listrik extends Transaction {
        double availableBalance;
        Screen screen = super.getScreen();
        amount = displayMenuOfAmounts();
-       if(amount != 0){
+       if(amount != CANCELED){
                 BankDatabase atmBankDatabase = super.getBankDatabase();
                 availableBalance =
                         atmBankDatabase.getAvailableBalance(
                                 super.getAccountNumber());
                 if(amount <= availableBalance){
-                    atmBankDatabase.getAccount(super.getAccountNumber()).
-                            credit(amount);
+                    Account currentAccount = atmBankDatabase.getAccount(super.getAccountNumber());
+                    BankStatement NewBankStatement = 
+                                new BankStatement(currentAccount.getBankStatement().size() + 1,amount,0,currentAccount.getTotalBalance());
+                    currentAccount.credit(amount,NewBankStatement);
                     screen.displayPaymentSuccess("Top UP PLN");
                     screen.displayPLNBill(amount);
                 }
@@ -59,7 +61,7 @@ public class Listrik extends Transaction {
       Screen screen = getScreen(); // get screen reference
       
       // array of amounts to correspond to menu numbers
-      int[] amounts = {0, 134, 234, 63, 24, 75};
+      int[] amounts = {0, 10, 20, 50, 100, 200};
 
       // loop while no valid choice has been made
       while (userChoice == 0) {
@@ -75,23 +77,23 @@ public class Listrik extends Transaction {
             // corresponding amount from amounts array
             
             // -- NAMBAH INI
-            case 11123: 
+            case 1: 
                userChoice = amounts[1]; // save user's choice
                break; 
-            case 22233: 
+            case 2: 
                userChoice = amounts[2]; // save user's choice
                break; 
-            case 33333: 
+            case 3: 
                userChoice = amounts[3]; // save user's choice
                break; 
-            case 45454:
+            case 4:
                userChoice = amounts[4]; // save user's choice
                break;  
-            case 55364:
+            case 5:
                userChoice = amounts[5]; // save user's choice
                break;       
             case 6: // the user chose to cancel
-               userChoice = amounts[input - CANCELED]; // save user's choice
+               userChoice = CANCELED; // save user's choice
                break;
             default: // the user did not enter a value from 1-6
                screen.displayInputError();

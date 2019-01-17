@@ -41,15 +41,4 @@ public class BankDatabase {
       return getAccount(userAccountNumber).getTotalBalance();
    } 
    
-   
-   // -- NAMBAH INI
-   public void credit(int userAccountNumber, double amount) {
-      getAccount(userAccountNumber).credit(amount);
-   }
-   
-   // -- NAMBAH INI
-   public void debit(int userAccountNumber, double amount) {
-      getAccount(userAccountNumber).debit(amount);
-   } 
-   
 } 

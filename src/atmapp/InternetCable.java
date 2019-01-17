@@ -9,7 +9,7 @@ public class InternetCable extends Transaction {
    private Keypad keypad; // reference to keypad
 
    // constant corresponding to menu option to cancel
-   private final static int CANCELED = 0;
+   private final static int CANCELED = -100;
 
    // Withdrawal constructor
    public InternetCable(int userAccountNumber, Screen atmScreen, 
@@ -41,13 +41,10 @@ public class InternetCable extends Transaction {
                             super.getAccountNumber());
             if(amount <= availableBalance){
                 Account currentAccount = atmBankDatabase.getAccount(super.getAccountNumber());
-                currentAccount.credit(amount);
+                    BankStatement NewBankStatement = 
+                            new BankStatement(currentAccount.getBankStatement().size() + 1,amount,0,currentAccount.getTotalBalance());
+                currentAccount.credit(amount,NewBankStatement);
                 screen.displayPaymentSuccess(internetCable);
-                
-                BankStatement NewBankStatement = 
-                new BankStatement(currentAccount.getBankStatement().size() + 1,amount,0,currentAccount.getTotalBalance());
-
-                currentAccount.addRecordBankStatement(NewBankStatement);
             }
             else {
                 screen.displayBalanceInsfulence(internetCable, availableBalance, amount);
@@ -97,7 +94,7 @@ public class InternetCable extends Transaction {
             case 5:
                userChoice = amounts[input]; // save user's choice
                break;
-            case CANCELED: // the user chose to cancel
+            case 0: // the user chose to cancel
                userChoice = CANCELED; // save user's choice
                break;
             default: // the user did not enter a value from 1-6

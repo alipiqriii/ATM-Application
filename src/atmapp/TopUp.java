@@ -17,7 +17,7 @@ public class TopUp extends Transaction {
    private final AccountVirtualDatabase virtualDatabase = new AccountVirtualDatabase();
 
    // constant corresponding to menu option to cancel
-   private final static int CANCELED = 0;
+   private final static int CANCELED = -100;
 
     public TopUp(int userAccountNumber, Screen atmScreen, BankDatabase atmBankDatabase, Keypad atmKeypad) {
         super(userAccountNumber, atmScreen, atmBankDatabase);
@@ -42,8 +42,12 @@ public class TopUp extends Transaction {
         amount = pilihanTopup();
          if(amount != 0){
              if(amount <= currentAccount.getAvailableBalance()){
-                 currentAccount.credit(amount);
-                 destinationAccount.addAmount(amount);
+                BankStatement NewBankStatement = 
+                        new BankStatement(currentAccount.getBankStatement().size() + 1,amount,0,currentAccount.getTotalBalance());
+                 currentAccount.credit(amount,NewBankStatement);
+                BankStatement NewBankStatement2 = 
+                        new BankStatement(destinationAccount.getBankStatement().size() + 1,0,amount,currentAccount.getTotalBalance());
+                 destinationAccount.addAmount(amount, NewBankStatement2);
                  screen.displayTopUpSuccess();
              }
              else screen.displayBalanceisInsfluence();
@@ -81,7 +85,7 @@ public class TopUp extends Transaction {
                 break;
                
        }
-       if (input == CANCELED) {
+       if (input == 0) {
          return CANCELED;
       }
       else {
@@ -97,7 +101,7 @@ public class TopUp extends Transaction {
       screen.displayAmountTopUp();
       int input = keypad.getInput(); // receive input of deposit amount
       
-      if (input == CANCELED) {
+      if (input == 0) {
          return CANCELED;
       }
       else {
@@ -136,7 +140,7 @@ public class TopUp extends Transaction {
         screen.displayQuetion();
         input = keypad.getInput();
         
-        if (valid && input == CANCELED) {
+        if (valid && input == 0) {
             return null;
         } else if (input == 1) {
             return virtualDatabase.getAccount(destinationPhoneNumber.substring(5));
@@ -184,8 +188,8 @@ public class TopUp extends Transaction {
             case 5:
                userChoice = amounts[input]; // save user's choice
                break;       
-            case CANCELED: // the user chose to cancel
-               userChoice = amounts[input - CANCELED]; // save user's choice
+            case 6: // the user chose to cancel
+               userChoice = CANCELED; // save user's choice
                break;
             default: // the user did not enter a value from 1-6
                screen.displayMessageLine(

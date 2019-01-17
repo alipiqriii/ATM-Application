@@ -4,7 +4,7 @@ public class Deposit extends Transaction {
    private double amount; // amount to deposit
    private Keypad keypad; // reference to keypad
    private DepositSlot depositSlot; // reference to deposit slot
-   private final static int CANCELED = 0; // constant for cancel option
+   private final static int CANCELED = -100; // constant for cancel option
 
    // Deposit constructor
    public Deposit(int userAccountNumber, Screen atmScreen, 
@@ -27,18 +27,16 @@ public class Deposit extends Transaction {
        
        Screen screen = getScreen();
        amount = promptForDepositAmount();
-       if(amount != 0){
+       if(amount != CANCELED){
            BankDatabase atmBankDatabase = super.getBankDatabase();
            screen.displayInsertEnvelopeDeposit(amount);
            if(depositSlot.isEnvelopeReceived()){
                Account currentAccount = atmBankDatabase.getAccount(super.getAccountNumber());
                screen.displayReceivedEnvelopeDeposit();
-               currentAccount.debit(amount);
-               
                BankStatement NewBankStatement = 
                new BankStatement(currentAccount.getBankStatement().size() + 1,0,amount,currentAccount.getTotalBalance());
+               currentAccount.debit(amount,NewBankStatement);
                
-               currentAccount.addRecordBankStatement(NewBankStatement);
            }
        }
        else {
@@ -58,7 +56,11 @@ public class Deposit extends Transaction {
       int input = keypad.getInput(); // receive input of deposit amount
       
       // check whether the user canceled or entered a valid amount
-      if (input == CANCELED) {
+      if(input <= 0){
+         screen.displayNegative();
+         return CANCELED;
+      }
+      else if (input == 0) {
          return CANCELED;
       }
       else {

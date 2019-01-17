@@ -7,7 +7,7 @@ public class Voucher_Game extends Transaction {
    private int amount; // amount to withdraw
    private Keypad keypad; // reference to keypad
    // constant corresponding to menu option to cancel
-   private final static int CANCELED = 6;
+   private final static int CANCELED = -100;
 
    // Withdrawal constructor
    public Voucher_Game(int userAccountNumber, Screen atmScreen, 
@@ -28,13 +28,15 @@ public class Voucher_Game extends Transaction {
        double availableBalance;
        Screen screen = super.getScreen();
        amount = displayMenuOfAmounts();
-       if(amount != 0){
+       if(amount != CANCELED){
         BankDatabase atmBankDatabase = super.getBankDatabase();
         availableBalance =
                 atmBankDatabase.getAccount(super.getAccountNumber()).getAvailableBalance();
                 if(amount <= availableBalance){
-                    atmBankDatabase.getAccount(super.getAccountNumber()).
-                            credit(amount);
+                    Account currentAccount = atmBankDatabase.getAccount(super.getAccountNumber());
+                        BankStatement NewBankStatement = 
+                                new BankStatement(currentAccount.getBankStatement().size() + 1,amount,0,currentAccount.getTotalBalance());
+                    currentAccount.credit(amount,NewBankStatement);
                     screen.displayMessageLine("Your Voucher Game Payment Has Been Purchased");
                     screen.displayMessageLine("Please Check Your Email!");
                 }
@@ -69,7 +71,6 @@ public class Voucher_Game extends Transaction {
          String email;
          screen.displayMessageLine("============ VOUCHER GAME =============");
          screen.displayMessage("Input Your Email Account Game : ");
-         keypad.getInputString();
          email = keypad.getInputString();
 //         keypad.getInput();
          screen.displayMessageLine("============== CATEGORY ===============");
@@ -106,8 +107,8 @@ public class Voucher_Game extends Transaction {
             case 5:
                userChoice = amounts[input]; // save user's choice
                break;       
-            case CANCELED: // the user chose to cancel
-               userChoice = amounts[input - CANCELED]; // save user's choice
+            case 6: // the user chose to cancel
+               userChoice = CANCELED; // save user's choice
                break;
             default: // the user did not enter a value from 1-6
                screen.displayMessageLine(

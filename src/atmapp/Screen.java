@@ -64,9 +64,7 @@ public abstract class Screen {
    public abstract void displayQuetion();
    public abstract void displayTryAgain();
    public abstract void displayInvalid();
-   
-   
-    
+   public abstract void displayNegative();   
    public abstract String getID();
    
 } 

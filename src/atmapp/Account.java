@@ -49,19 +49,23 @@ public class Account {
       return totalBalance;
    } 
    
-   public void credit(double amount) {
+   public void credit(double amount,BankStatement newBankStatement) {
        this.availableBalance -= amount;
        this.totalBalance -= amount;
+       addRecordBankStatement(newBankStatement);
    }
 
-   public void debit(double amount) {
+   public void debit(double amount,BankStatement newBankStatement) {
 //       this.availableBalance += amount;
        this.totalBalance += amount;
+       addRecordBankStatement(newBankStatement);
+       
    }
    
-   public void addAmount(double amount) {
+   public void addAmount(double amount,BankStatement newBankStatement) {
        this.availableBalance += amount;
        this.totalBalance += amount;
+       addRecordBankStatement(newBankStatement);
    }
 
    public int getAccountNumber() {
@@ -73,6 +77,7 @@ public class Account {
    }
    
    public void viewRecordBankStatement(){
+       System.out.println("");
        for(BankStatement key : this.bankStatement){
            System.out.print(""
                    + key.getNumberRecord()

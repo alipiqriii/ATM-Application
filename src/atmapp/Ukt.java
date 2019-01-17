@@ -8,7 +8,7 @@ public class Ukt extends Transaction {
    private Keypad keypad; // reference to keypad
 
    // constant corresponding to menu option to cancel
-   private final static int CANCELED = 9;
+   private final static int CANCELED = -100;
 
    // Withdrawal constructor
    public Ukt(int userAccountNumber, Screen atmScreen, 
@@ -29,14 +29,16 @@ public class Ukt extends Transaction {
        double availableBalance;
        Screen screen = super.getScreen();
        amount = displayMenuOfAmounts();
-       if(amount != 9){
+       if(amount != CANCELED){
                 BankDatabase atmBankDatabase = super.getBankDatabase();
                 availableBalance =
                         atmBankDatabase.getAvailableBalance(
                                 super.getAccountNumber());
                 if(amount <= availableBalance){
-                    atmBankDatabase.getAccount(super.getAccountNumber()).
-                            credit(amount);
+                    Account currentAccount = atmBankDatabase.getAccount(super.getAccountNumber());
+                        BankStatement NewBankStatement = 
+                                new BankStatement(currentAccount.getBankStatement().size() + 1,amount,0,currentAccount.getTotalBalance());
+                    currentAccount.credit(amount,NewBankStatement);
                     screen.displayMessageLine("Pembayaran UKT Berhasil");
                 }
                 else {
@@ -111,7 +113,7 @@ public class Ukt extends Transaction {
             case 8:
                userChoice = amounts[input]; // save user's choice
                break;
-            case CANCELED: // the user chose to cancel
+            case 9: // the user chose to cancel
                userChoice = CANCELED; // save user's choice
                break;
             default: // the user did not enter a value from 1-6

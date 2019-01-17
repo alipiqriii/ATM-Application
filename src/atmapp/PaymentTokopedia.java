@@ -7,7 +7,7 @@ public class PaymentTokopedia extends Transaction {
    private TokopediaDatabase tokopediaDatabase;
 
    // constant corresponding to menu option to cancel
-   private final static int CANCELED = 6;
+   private final static int CANCELED = -100;
 
    // Withdrawal constructor
    public PaymentTokopedia(int userAccountNumber, Screen atmScreen, 
@@ -30,7 +30,6 @@ public class PaymentTokopedia extends Transaction {
        Screen screen = super.getScreen();
        BankDatabase atmBankDatabase = super.getBankDatabase();
        screen.displayPaymentTokopedia();
-       keypad.getInputString();
        String codeNumber = keypad.getInputString();// get user input through keypad      
        TransactionCode voucherTokopedia = tokopediaDatabase.getCode(codeNumber);
 
@@ -38,10 +37,15 @@ public class PaymentTokopedia extends Transaction {
            double availableBalance = atmBankDatabase.getAvailableBalance(super.getAccountNumber());
            if (availableBalance >= voucherTokopedia.getPrice()){
                
-                atmBankDatabase.getAccount(super.getAccountNumber()).
-                            credit(voucherTokopedia.getPrice());
-                
-                atmBankDatabase.getAccount(5678).addAmount(voucherTokopedia.getPrice());
+               Account currentAccount = atmBankDatabase.getAccount(super.getAccountNumber());
+                    BankStatement NewBankStatement = 
+                            new BankStatement(currentAccount.getBankStatement().size() + 1,amount,0,currentAccount.getTotalBalance());
+                currentAccount.credit(voucherTokopedia.getPrice(),NewBankStatement);
+               
+               Account destinationAccount = atmBankDatabase.getAccount(5678);
+               NewBankStatement = new BankStatement(currentAccount.getBankStatement().size() + 1,
+                       0,amount,currentAccount.getTotalBalance());
+                destinationAccount.addAmount(voucherTokopedia.getPrice(),NewBankStatement);
                   
                 
                     screen.displaySucccessPaymentTokopedia();
@@ -49,7 +53,7 @@ public class PaymentTokopedia extends Transaction {
            else   screen.displayMessageLine("Your balance is not enough "
                         + "to make a buy voucher Tokopedia");           
        }
-       else   screen.displayMessageLine("Canceling transaction...");         
+       else   screen.displayMessageLine("Voucher Not Found \n Canceling transaction...");         
            
    } 
 

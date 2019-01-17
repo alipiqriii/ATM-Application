@@ -139,7 +139,7 @@ public class ScreenID extends Screen {
    public void displayMenuPayment(){
         displayMessageLine("\nMenu Pembayaran:");
         displayMessageLine("1 - Voucher Game");
-        displayMessageLine("2 - Credit");
+        displayMessageLine("2 - Pulsa");
         displayMessageLine("3 - Internet Kabel");
         displayMessageLine("4 - TV Satelit");
         displayMessageLine("5 - TopUp");
@@ -221,7 +221,7 @@ public class ScreenID extends Screen {
     
     @Override
     public void displayInputNumber(){
-        displayMessage("\nSilahkan masukkan nomor tujuan anda : ");
+        displayMessage("\nSilahkan masukkan nomor rekening tujuan anda : ");
     }
     
     @Override 
@@ -269,8 +269,14 @@ public class ScreenID extends Screen {
  
 
     public void displayListrik(){
-        displayMessage("\n=== Pembayaran PLN ===");
-        displayMessage("\nMasuka Nomor PLN : ");
+        displayMessage("\n=== Pembayaran PLN ===\n");
+        displayMessageLine("1 - $10");
+        displayMessageLine("2 - $20");
+        displayMessageLine("3 - $50");
+        displayMessageLine("4 - $100");
+        displayMessageLine("5 - $200");
+        displayMessageLine("6 - Transaksi dibatalkan");
+        displayMessage("\nMasukan pilihan anda: ");
     }
     
     @Override
@@ -288,7 +294,11 @@ public class ScreenID extends Screen {
     @Override
     public void displayPLNBill(int amount){
         displayMessageLine("");
-        displayMessage("Jumlah tagihan listrik : " + amount);
+        displayMessage("Jumlah tagihan listrik : " + amount + "$");
     }
-
+    
+    @Override
+    public void displayNegative(){
+        displayMessageLine("Angka tidak boleh negative");
+    }
 } 

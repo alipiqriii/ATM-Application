@@ -143,9 +143,11 @@ public class ATM {
                 while (currentTransaction == null && choosenPayment != 0){
                 screen.displayMenuPayment();
                 choosenPayment = keypad.getInput();
-                
                 currentTransaction = createTransaction(PAYMENT+choosenPayment);
-                if(currentTransaction != null) currentTransaction.execute();
+                if(currentTransaction != null) {
+                    currentTransaction.execute();
+                    currentTransaction = null;
+                }
                 else if(choosenPayment != EXIT && currentTransaction==null)
                     screen.displayInvalidSelection();
                 }

@@ -8,7 +8,7 @@ public class Transfer extends Transaction {
    private Keypad keypad; // reference to keypad
 
    // constant corresponding to menu option to cancel
-   private final static int CANCELED = 0;
+   private final static int CANCELED = -100;
 
    // Withdrawal constructor
    public Transfer(int userAccountNumber, Screen atmScreen, 
@@ -39,16 +39,18 @@ public class Transfer extends Transaction {
                     BankDatabase atmBankDatabase = super.getBankDatabase();
                     Account currentAccount = atmBankDatabase.getAccount(super.getAccountNumber());
                     
-                    currentAccount.credit(amount);
-                    
                     BankStatement NewBankStatement = 
                     new BankStatement(currentAccount.getBankStatement().size() + 1,amount,0,currentAccount.getTotalBalance());
                     currentAccount.addRecordBankStatement(NewBankStatement);
                     
-                    destinationAccount.addAmount(amount);
+                    currentAccount.credit(amount,NewBankStatement);
+                    
                     NewBankStatement = 
                     new BankStatement(destinationAccount.getBankStatement().size() + 1,0,amount,destinationAccount.getTotalBalance());
                     currentAccount.addRecordBankStatement(NewBankStatement);
+                    
+                    destinationAccount.addAmount(amount,NewBankStatement);
+                    
                     
                     double availableBalanceNow = currentAccount.getAvailableBalance();
                     screen.displayTransferSuccess(availableBalanceNow);
@@ -88,7 +90,11 @@ public class Transfer extends Transaction {
       int input = keypad.getInput(); // receive input of deposit amount
       
       // check whether the user canceled or entered a valid amount
-      if (input == CANCELED) {
+      if (input <= 0){
+          screen.displayNegative();
+          return CANCELED;
+      }
+      else if (input == 0) {
          return CANCELED;
       }
       else {

@@ -273,7 +273,13 @@ public class ScreenEN extends Screen {
 
     public void displayListrik(){
         displayMessage("\n=== Top Up PLN ===");
-        displayMessage("\nInput PLN number : ");
+        displayMessageLine("1 - $10");
+        displayMessageLine("2 - $20");
+        displayMessageLine("3 - $50");
+        displayMessageLine("4 - $100");
+        displayMessageLine("5 - $200");
+        displayMessageLine("6 - Cancel transaction");
+        displayMessage("\nChoose a TopUp amount: ");
     }
     
     @Override
@@ -294,5 +300,8 @@ public class ScreenEN extends Screen {
         displayMessage("The amount of the bill : " + amount);
     }
     
-
+    @Override
+    public void displayNegative(){
+        displayMessageLine("Number Cannot Negative");
+    }
 }
