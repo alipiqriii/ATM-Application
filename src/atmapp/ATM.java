@@ -24,6 +24,7 @@ public class ATM {
    private static final int VOUCHERGAME     = 1;
    private static final int CREDIT          = 2;
    private static final int INTERNETCABLE   = 3;
+   private static final int TVSATELITE      = 4;
    private static final int TOPUP = 5;
    private static final int UKT = 6;
    private static final int LISTRIK = 7;
@@ -200,6 +201,9 @@ public class ATM {
              break;
          case PAYMENT+VOUCHERGAME:
              temp = new Voucher_Game(currentAccountNumber,screen,bankDatabase,keypad);
+             break;
+         case PAYMENT+TVSATELITE:
+             temp = new TVSatelite(currentAccountNumber,screen,bankDatabase,keypad);
              break;
          case PAYMENT+INTERNETCABLE:
              temp = new InternetCable(currentAccountNumber,screen,bankDatabase,keypad);

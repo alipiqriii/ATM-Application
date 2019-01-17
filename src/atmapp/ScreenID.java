@@ -162,6 +162,17 @@ public class ScreenID extends Screen {
    }
    
    @Override
+   public void displayMenuTvSatelite(){
+        displayMessageLine("\nMenu TV Satelite Indovision:");
+        displayMessageLine("1 - 10MbPS/Bulan ($75)");
+        displayMessageLine("2 - 15MbPS/Bulan ($100)");
+        displayMessageLine("3 - 25MbPS/Bulan ($150)");
+        displayMessageLine("4 - 50MbPS/Bulan ($250)");
+        displayMessageLine("0 - Kembali");
+        displayMessage("\nInput : ");
+   }
+   
+   @Override
    public void displayPaymentSuccess(String Payment){
        displayMessageLine(Payment + " Berhasil");
    }

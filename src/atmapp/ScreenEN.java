@@ -150,6 +150,17 @@ public class ScreenEN extends Screen {
    }
    
    @Override
+   public void displayMenuTvSatelite(){
+        displayMessageLine("\nMenu TV Satelite Indovision:");
+        displayMessageLine("1 - 10MbPS/Bulan ($75)");
+        displayMessageLine("2 - 15MbPS/Bulan ($100)");
+        displayMessageLine("3 - 25MbPS/Bulan ($150)");
+        displayMessageLine("4 - 50MbPS/Bulan ($250)");
+        displayMessageLine("0 - Kembali");
+        displayMessage("\nInput : ");
+   }
+   
+   @Override
    public void displayMenuPayment(){
         displayMessageLine("\nPayment Menu:");
         displayMessageLine("1 - Voucher Game");

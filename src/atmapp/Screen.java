@@ -43,6 +43,7 @@ public abstract class Screen {
    public abstract void displayMenuWithdrawal();
    public abstract void displayMenuPayment();
    public abstract void displayMenuInternetCable();
+   public abstract void displayMenuTvSatelite();
    public abstract void displayPaymentSuccess(String Payment);
    public abstract void displayTopUpSuccess();
    public abstract void displayBalanceisInsfluence();
