@@ -109,7 +109,6 @@ public class ATM {
                currentTransaction = 
                   createTransaction(mainMenuSelection);
                currentTransaction.execute();
-               bankDatabase.getAccount(currentAccountNumber).viewRecordBankStatement();
                 break;
                
             case WITHDRAWAL:
